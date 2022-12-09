@@ -1,4 +1,4 @@
-package com.learning.java.util.RestTemplateConfig;
+package com.learning.java.model;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
@@ -24,8 +24,6 @@ public class RestTemplateRequest implements Serializable {
 	private static final long serialVersionUID = 6668116445566467631L;
 
 	private boolean paged; // Primitive data type : default value false.
-
-	private String key;
 
 	private String url;
 
