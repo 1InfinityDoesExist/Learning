@@ -9,11 +9,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.core.convert.CustomConversions;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class BigDecimalConverter {
 
 	@Bean
 	public CustomConversions customConverions() {
+		log.info("-----Creating bean of customConverisons of BigDecimal for mongoTemplate-----");
+
 		Converter<Decimal128, BigDecimal> decimal128ToBigDecimal = new Converter<Decimal128, BigDecimal>() {
 			@Override
 			public BigDecimal convert(Decimal128 s) {

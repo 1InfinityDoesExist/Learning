@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.wnameless.json.flattener.FlattenMode;
 import com.github.wnameless.json.flattener.JsonFlattener;
+import com.learning.java.config.BigDecimalConverter;
 import com.learning.java.entity.MultipleDataTypes;
 import com.learning.java.repository.MultipleDataTypesRepository;
 import com.learning.java.service.MultipleDataTypesService;
@@ -26,6 +27,9 @@ public class MultipleDataTypesServiceImpl implements MultipleDataTypesService {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
+
+	@Autowired
+	private BigDecimalConverter bigDecimalConverter;
 
 	@Autowired
 	private MultipleDataTypesRepository multipleDataTypesRepository;
