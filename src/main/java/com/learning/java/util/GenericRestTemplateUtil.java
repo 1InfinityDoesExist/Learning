@@ -26,7 +26,7 @@ public class GenericRestTemplateUtil {
 		try {
 			ResponseEntity<R> response = restTemplate.exchange(url, method, new HttpEntity<>(payload, headers),
 					responseType);
-			log.info("Response for {} {} with headers {} & payload {} : {} ", method, url, payload, response);
+			log.debug("Response for {} {} with headers {} & payload {} : {} ", method, url, payload, response);
 			if (!response.getStatusCode().is2xxSuccessful() || !response.hasBody()) {
 				throw new RuntimeException("----Failed to call the 3rd party api.-----");
 			}

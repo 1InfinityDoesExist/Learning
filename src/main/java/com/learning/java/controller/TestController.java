@@ -1,5 +1,7 @@
 package com.learning.java.controller;
 
+import java.io.IOException;
+
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +21,9 @@ public class TestController {
 	public PageAPIRecCall pageAPIRecCall;
 
 	@PostMapping("/post")
-	public void test(@RequestBody Object obj) throws JsonProcessingException, ParseException {
+	public void test(@RequestBody Object obj) throws ParseException, IOException {
 
 		log.info("++++++++++++++++++++ " + obj);
-		pageAPIRecCall.getPagedData(obj);
+		pageAPIRecCall.getPagedDataRefactored(obj);
 	}
 }
