@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.thymeleaf.util.MapUtils;
 
+import com.eclipsesource.json.JsonArray;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -79,12 +80,12 @@ public class PageAPIRecCall {
 			log.info("----Pagination Success");
 		}
 	}
-
+	
 	public void getPagedDataRefactored(Object restApiRequest) throws ParseException, IOException {
 
 		log.info("----RestApiRequest : {}", restApiRequest);
 		RestTemplateRequest restTemplateRequest = objectMapper.convertValue(restApiRequest, RestTemplateRequest.class);
-		restTemplateRequest.setMethod(org.springframework.http.HttpMethod.GET);
+		restTemplateRequest.setMethod(org.springframework.http.HttpMethod.GET); // To be removed.
 
 		HttpHeaders headers = new HttpHeaders();
 		if (!MapUtils.isEmpty(restTemplateRequest.getHeaders())) {
@@ -110,6 +111,11 @@ public class PageAPIRecCall {
 				if (jsonNodeType.equals(NodeType.ARRAY)) {
 					if (CollectionUtils.isEmpty(List.class.cast(read))) {
 						log.info("------Flag : {}", flag);
+
+						JsonArray jsonArray = objectMapper.readValue(objectMapper.writeValueAsString(read),
+								JsonArray.class);
+						log.info("-----JsonArray size : {}", jsonArray);
+
 						flag = false;
 					}
 				}
@@ -117,5 +123,4 @@ public class PageAPIRecCall {
 			log.info("----Pagination Success");
 		}
 	}
-
 }
